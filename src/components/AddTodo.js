@@ -15,7 +15,7 @@ const Input = styled.input`
   text-align: center;
 `;
 
-const Button = styled.button`
+const AddButton = styled.button`
   font-size: 18px;
   border-radius: 5px;
   padding: 5px;
@@ -29,7 +29,7 @@ const Button = styled.button`
   }
 `;
 
-const AddTodo = ({ dispatch }) => {
+const AddTodo = ({ addTodo }) => {
   let input;
 
   return (
@@ -38,18 +38,18 @@ const AddTodo = ({ dispatch }) => {
         placeholder='new todo here...' 
         innerRef={node => input = node}
       />
-      <Button 
+      <AddButton 
         onClick={() => {
             if (!input.value.trim()) { return; }
-            dispatch(addTodo(input.value));
+            addTodo(input.value);
             input.value = '';
           }
         } 
       >
         Add Todo
-      </Button>
+      </AddButton>
     </AddTodoContainer>
   )
 };
 
-export default connect()(AddTodo);
+export default connect(null, { addTodo })(AddTodo);

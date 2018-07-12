@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import Todo from './Todo';
-import { removeTodo } from '../AC';
 import { connect } from 'react-redux';
 
 const List = styled.ul`
@@ -16,10 +15,12 @@ const TodoList = ({ todos }) => {
   return (
     <List>
       { 
-        todos.map(( todo, key ) => 
+        todos.map( todo => 
           <Todo 
-            key={key}
+            key={todo.id}
+            id={todo.id}
             text={todo.text}
+            isChecked={todo.completed}
           />
         ) 
       }
@@ -29,4 +30,4 @@ const TodoList = ({ todos }) => {
 
 export default connect((state) => ({
   todos: state.todos
-}), { removeTodo }) (TodoList);
+})) (TodoList);

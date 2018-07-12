@@ -5,14 +5,19 @@ export default (state = [], action) => {
         ...state,
         {
           id: action.id,
-          text: action.text 
+          text: action.text,
+          completed: false
         }
       ];
     case 'REMOVE_TODO':
-      return [
-        ...state.slice(0, action.index),
-        ...state.slice(action.index + 1, state.length)
-      ];
+      return state.filter(item => item.id !== action.id)
+    case 'TOGGLE_TODO':
+      return state.map(item => {
+        if (item.id === action.id) {
+          item.completed = !(item.completed);
+        }
+        return item;
+      });
     default:
       return state;
   }

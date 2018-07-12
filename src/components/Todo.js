@@ -1,45 +1,68 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
+import { removeTodo, toggleTodo } from '../AC';
 
-const ItemContainer = styled.li`
-  background-color: cyan;
+const TodoContainer = styled.li`
   padding: 5px;
   text-align: center;
   margin-bottom: 5px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 `;
 
-const Button = styled.button`
+const RemoveButton = styled.button`
   font-size: 12px;
   border-radius: 5px;
   transition: 0.1s;
+  margin-left: auto;
   &:hover {
     cursor: pointer;
-    color: yellow;
+    color: white;
     background-color: red;
     transition: 0.1s;
   }
 `;
 
-const Item = ({ text, key, dispatch }) => {
-  return (
-    <ItemContainer>
-      {text}
-      <Button 
-        onClick={() => {
-            dispatch(this.props.addTodo(key));
-          } 
-        }
-      >
-        x
-      </Button>
-    </ItemContainer>
-  )
+const TodoStatusBox = styled.input.attrs({
+  type: 'checkbox'
+})`
+  padding: 5px;
+`;
+
+class Todo extends Component {
+  render() {
+    const { text, isChecked } = this.props;
+    return (
+      <TodoContainer>
+        {text}
+        <RemoveButton 
+          onClick={this.handleDelete} 
+        >
+          Remove
+        </RemoveButton>
+        <TodoStatusBox 
+          checked={isChecked}
+          onChange={this.handleCheck} 
+        />
+      </TodoContainer>
+    )
+  };
+
+  handleDelete = () => {
+    const { removeTodo, id } = this.props;
+    removeTodo(id);
+  }
+
+  handleCheck = () => {
+    const { toggleTodo, id } = this.props;
+    toggleTodo(id);
+  }
 };
 
-export default connect()(Item);
+export default connect(null, { removeTodo, toggleTodo })(Todo);
 
 
