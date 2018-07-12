@@ -4,10 +4,10 @@ import Button from './Button';
 import { connect } from 'react-redux';
 
 const ItemContainer = styled.li`
-  background-color: cyan
-  padding: 5px
-  text-align: center
-  margin-bottom: 5px
+  background-color: cyan;
+  padding: 5px;
+  text-align: center;
+  margin-bottom: 5px;
 `;
 
 const Item = ({ text, key, dispatch }) => {

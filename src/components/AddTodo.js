@@ -21,9 +21,9 @@ const AddTodo = ({ dispatch }) => {
 
   return (
     <AddTodoContainer>
-      <input 
+      <Input 
         placeholder='new todo here...' 
-        ref={node => input = node}
+        innerRef={node => input = node}
       />
       <Button 
         text='Add Todo' 
