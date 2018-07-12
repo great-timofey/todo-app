@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import Todo from './Todo';
+import { removeTodo } from '../AC';
+import { connect } from 'react-redux';
 
 const List = styled.ul`
   list-style: none
@@ -10,13 +12,21 @@ const List = styled.ul`
   font-size: 20px
 `;
 
-export default class TodoList extends Component {
-  render() {
-    return (
-      <List>
-        <Todo name='mock1' /> 
-        <Todo name='mock1' /> 
-      </List>
-    )
-  }
+const TodoList = ({ todos }) => {
+  return (
+    <List>
+      { 
+        todos.map(( todo, key ) => 
+          <Todo 
+            key={key}
+            text={todo.text}
+          />
+        ) 
+      }
+    </List>
+  )
 }
+
+export default connect((state) => ({
+  todos: state.todos
+}), { removeTodo }) (TodoList);

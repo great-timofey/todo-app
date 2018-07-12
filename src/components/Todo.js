@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
+import Button from './Button';
+import { connect } from 'react-redux';
 
-const Item = styled.li`
+const ItemContainer = styled.li`
   background-color: cyan
   padding: 5px
   text-align: center
   margin-bottom: 5px
 `;
 
-export default ({ name }) => {
-  return <Item>{name}</Item>;
-}
+const Item = ({ text, key, dispatch }) => {
+  return (
+    <ItemContainer>
+      {text}
+      <Button 
+        onClick={() => {
+            dispatch(this.props.addTodo(key));
+          } 
+        }
+      >
+        Remove Todo
+      </Button>
+    </ItemContainer>
+  )
+};
+
+export default connect()(Item);
+
+

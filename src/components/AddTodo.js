@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import Button from './Button';
+import { addTodo } from '../AC';
+import { connect } from 'react-redux';
 
 const AddTodoContainer = styled.div`
   padding: 20px
@@ -14,13 +16,26 @@ const Input = styled.input`
   text-align: center
 `;
 
-export default class AddTodo extends Component {
-  render() {
-    return (
-      <AddTodoContainer>
-        <Input placeholder='new todo here...' />
-        <Button text='Add' />
-      </AddTodoContainer>
-    )
-  }
-}
+const AddTodo = ({ dispatch }) => {
+  let input;
+
+  return (
+    <AddTodoContainer>
+      <input 
+        placeholder='new todo here...' 
+        ref={node => input = node}
+      />
+      <Button 
+        text='Add Todo' 
+        onClick={() => {
+            if (!input.value.trim()) { return; }
+            dispatch(addTodo(input.value));
+            input.value = '';
+          }
+        } 
+      />
+    </AddTodoContainer>
+  )
+};
+
+export default connect()(AddTodo);
