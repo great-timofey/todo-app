@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
-import Button from './Button';
 import { connect } from 'react-redux';
 
 const ItemContainer = styled.li`
@@ -8,6 +7,21 @@ const ItemContainer = styled.li`
   padding: 5px;
   text-align: center;
   margin-bottom: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const Button = styled.button`
+  font-size: 12px;
+  border-radius: 5px;
+  transition: 0.1s;
+  &:hover {
+    cursor: pointer;
+    color: yellow;
+    background-color: red;
+    transition: 0.1s;
+  }
 `;
 
 const Item = ({ text, key, dispatch }) => {
@@ -20,7 +34,7 @@ const Item = ({ text, key, dispatch }) => {
           } 
         }
       >
-        Remove Todo
+        x
       </Button>
     </ItemContainer>
   )
