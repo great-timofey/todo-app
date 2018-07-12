@@ -20,3 +20,21 @@ export const toggleTodo = id => {
     id
   }
 };
+
+export const showAll = () => {
+  return {
+    type: 'SHOW_ALL'
+  }
+};
+
+export const showCompleted = () => {
+  return {
+    type: 'SHOW_COMPLETED'
+  }
+};
+
+export const showUncompleted = () => {
+  return {
+    type: 'SHOW_UNCOMPLETED'
+  }
+};

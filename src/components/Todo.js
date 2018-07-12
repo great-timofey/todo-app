@@ -5,8 +5,7 @@ import { removeTodo, toggleTodo } from '../AC';
 
 const TodoContainer = styled.li.attrs({
   style: props => ({
-    background: props.active ? 'black' : 'white',
-    color: props.active ? 'white' : 'black'
+    textDecorationLine: props.active ? 'line-through' : 'none',
   })
 })`
   padding: 5px;
@@ -66,13 +65,11 @@ class Todo extends Component {
   }
 
   handleCheck = () => {
-    const { toggleTodo, id, todos } = this.props;
+    const { toggleTodo, id } = this.props;
     toggleTodo(id);
   }
 };
 
-export default connect((state) => ({
-  todos: state.todos
-}), { removeTodo, toggleTodo })(Todo);
+export default connect(null, { removeTodo, toggleTodo })(Todo);
 
 

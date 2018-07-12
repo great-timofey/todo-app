@@ -7,7 +7,7 @@ const List = styled.ul`
   list-style: none
   padding: 0
   width: 50%
-  margin: 0 auto
+  margin: 0 auto 20px
   font-size: 20px
 `;
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled, { injectGlobal } from 'styled-components';
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
+import FiltersPanel from './components/FiltersPanel';
 
 injectGlobal`
   body {
@@ -26,6 +27,7 @@ export default class App extends Component {
         <AppHeader>My Todo App</AppHeader>
         <AddTodo />
         <TodoList />
+        <FiltersPanel />
       </AppContainer>
     );
   }
