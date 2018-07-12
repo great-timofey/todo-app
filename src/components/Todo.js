@@ -3,7 +3,12 @@ import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
 import { removeTodo, toggleTodo } from '../AC';
 
-const TodoContainer = styled.li`
+const TodoContainer = styled.li.attrs({
+  style: props => ({
+    background: props.active ? 'black' : 'white',
+    color: props.active ? 'white' : 'black'
+  })
+})`
   padding: 5px;
   text-align: center;
   margin-bottom: 5px;
@@ -19,6 +24,7 @@ const RemoveButton = styled.button`
   border-radius: 5px;
   transition: 0.1s;
   margin-left: auto;
+  position: relative;
   &:hover {
     cursor: pointer;
     color: white;
@@ -30,14 +36,16 @@ const RemoveButton = styled.button`
 const TodoStatusBox = styled.input.attrs({
   type: 'checkbox'
 })`
-  padding: 5px;
+
 `;
 
 class Todo extends Component {
   render() {
     const { text, isChecked } = this.props;
     return (
-      <TodoContainer>
+      <TodoContainer 
+        active={isChecked}
+      >
         {text}
         <RemoveButton 
           onClick={this.handleDelete} 
@@ -58,11 +66,13 @@ class Todo extends Component {
   }
 
   handleCheck = () => {
-    const { toggleTodo, id } = this.props;
+    const { toggleTodo, id, todos } = this.props;
     toggleTodo(id);
   }
 };
 
-export default connect(null, { removeTodo, toggleTodo })(Todo);
+export default connect((state) => ({
+  todos: state.todos
+}), { removeTodo, toggleTodo })(Todo);
 
 
