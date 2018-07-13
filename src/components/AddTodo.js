@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
-import { addTodo, setPriority } from '../AC';
+import { addTodo } from '../AC';
 import { connect } from 'react-redux';
+import PriorityBar from './PriorityBar';
 
 const AddTodoContainer = styled.div`
   padding: 20px;
@@ -10,35 +11,16 @@ const AddTodoContainer = styled.div`
   position: relative;
 `;
 
-const Input = styled.input`
+const DataInput = styled.input`
   font-size: 15px;
-  margin-right: 20px;
   margin-bottom: 5px;
   text-align: center;
-`;
-
-const ImportanceContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-`;
-
-let radioCount = 0;
-const ImportanceRadio = styled.input.attrs({
-  type: 'radio',
-  name: 'importance',
-  id: () => `radio${++radioCount}`
-})`
-`;
-
-const ImportanceLabel = styled.label`
-  width: 100px;
-  margin-bottom: 5px
 `;
 
 const ParamsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 10px;
   max-width: 50%;
 `;
 
@@ -62,7 +44,7 @@ class AddTodo extends Component {
     super();
 
     this.state = {
-      currentPriority: ''
+      currentPriority: 'Normal'
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -74,44 +56,24 @@ class AddTodo extends Component {
     return (
       <AddTodoContainer>
         <ParamsContainer>
-          <Input 
+          <DataInput 
             placeholder='name...' 
             innerRef={node => nameInput = node}
           />
-          <Input 
+          <DataInput 
             placeholder='description...' 
             innerRef={node => descInput = node}
           />
-          <ImportanceContainer>
-            <ImportanceLabel>
-              <ImportanceRadio 
-                defaultChecked
-                onChange={this.handleChange}
-                value={'Normal'}
-              />
-              Normal
-            </ImportanceLabel>
-            <ImportanceLabel>
-              <ImportanceRadio 
-                onChange={this.handleChange}
-                value={'High'}
-              />
-              High
-            </ImportanceLabel>
-            <ImportanceLabel>
-              <ImportanceRadio 
-                onChange={this.handleChange}
-                value={'Highest'}
-              />
-              Highest
-            </ImportanceLabel>
-          </ImportanceContainer>
+          <PriorityBar 
+            handleChange={this.handleChange}
+          />
         </ParamsContainer>
         <AddButton 
           onClick={() => {
               if (!nameInput.value.trim() || !descInput.value.trim()) { return; }
-              this.props.setPriority(this.state.currentPriority);
-              this.props.addTodo(nameInput.value, descInput.value, this.state.currentPriority);
+              const { addTodo } = this.props;
+              const { currentPriority } = this.state;
+              addTodo(nameInput.value, descInput.value, currentPriority);
               nameInput.value = '';
               descInput.value = '';
             }
@@ -130,4 +92,4 @@ class AddTodo extends Component {
   }
 };
 
-export default connect(null, { addTodo, setPriority })(AddTodo);
+export default connect(null, { addTodo })(AddTodo);

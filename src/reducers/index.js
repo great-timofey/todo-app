@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
 import todos from './todos';
-import filters from './filters';
-import priority from './priority';
+import filter from './filter';
 
 export default combineReducers({
   todos,
-  filters,
-  priority
+  filter
 });

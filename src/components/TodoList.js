@@ -22,6 +22,7 @@ const TodoList = ({ todos }) => {
             id={todo.id}
             name={todo.name}
             desc={todo.desc}
+            priority={todo.priority}
             isChecked={todo.completed}
           />
         ) 
@@ -38,9 +39,13 @@ const getVisibleTodos = (todos, filter) => {
       return todos.filter(item => item.completed !== true);
     case Filters.SHOW_COMPLETED:
       return todos.filter(item => item.completed === true);
+    case Filters.SHOW_HIGH:
+      return todos.filter(item => item.priority === 'High');
+    case Filters.SHOW_HIGHEST:
+      return todos.filter(item => item.priority === 'Highest');
   }
 }
 
 export default connect((state) => ({
-  todos: getVisibleTodos(state.todos, state.filters)
+  todos: getVisibleTodos(state.todos, state.filter)
 })) (TodoList);

@@ -7,13 +7,7 @@ export const SET_FILTER = 'SET_FILTER';
 export const Filters = {
   SHOW_ALL : 'SHOW_ALL',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
-};
-
-export const SET_PRIORITY = 'SET_PRIORITY';
-
-export const Priorities = {
-  NORMAL: 'NORMAL',
-  HIGH: 'HIGH',
-  HIGHEST: 'HIGHEST'
+  SHOW_ACTIVE: 'SHOW_ACTIVE',
+  SHOW_HIGH: 'SHOW_HIGH',
+  SHOW_HIGHEST: 'SHOW_HIGHEST'
 };

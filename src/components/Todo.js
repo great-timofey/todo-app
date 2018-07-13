@@ -47,18 +47,34 @@ const TodoDesc = styled.p`
 const TodoStatusBox = styled.input.attrs({
   type: 'checkbox'
 })`
-
+  margin-right: 15px;
 `;
 
 class Todo extends Component {
   render() {
-    const { name, desc, isChecked } = this.props;
+    const { name, desc, priority, isChecked } = this.props;
+    let prioritySign;
+    switch ( priority ) {
+      case 'High':
+        prioritySign = '!';
+        break;
+      case 'Highest':
+        prioritySign = '!!!';
+        break;
+      default:
+        prioritySign = '';
+    }
+
     return (
       <TodoContainer 
         active={isChecked}
       >
+        <TodoStatusBox 
+          checked={isChecked}
+          onChange={this.handleCheck} 
+        />
         <TodoName>
-          {name}
+          {`${prioritySign} ${name}`}
         </TodoName>
         <TodoDesc>
           {desc}
@@ -68,10 +84,6 @@ class Todo extends Component {
         >
           Remove
         </RemoveButton>
-        <TodoStatusBox 
-          checked={isChecked}
-          onChange={this.handleCheck} 
-        />
       </TodoContainer>
     )
   };

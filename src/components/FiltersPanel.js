@@ -45,6 +45,16 @@ const FiltersPanel = ({ setFilter }) => {
       >
         Show Completed
       </Button>
+      <Button
+        onClick={() => setFilter(Filters.SHOW_HIGH)}
+      >
+        Show High
+      </Button>
+      <Button
+        onClick={() => setFilter(Filters.SHOW_HIGHEST)}
+      >
+        Show Highest
+      </Button>
     </FiltersContainer>
   )
 };

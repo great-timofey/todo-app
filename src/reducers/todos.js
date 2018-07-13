@@ -15,7 +15,7 @@ export default (state = [], action) => {
         }
       ];
     case REMOVE_TODO:
-      return state.filter(item => item.id !== id)
+      return state.filter(item => item.id !== id);
     case TOGGLE_TODO:
       return state.map(item => {
         if (item.id === id) {
