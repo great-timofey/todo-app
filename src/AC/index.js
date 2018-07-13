@@ -1,7 +1,8 @@
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, SET_FILTER } from '../components/constants';
 let nextId = 0;
 export const addTodo = text => { 
   return { 
-    type: 'ADD_TODO',
+    type: ADD_TODO,
     id: nextId++,
     text
   } 
@@ -9,32 +10,22 @@ export const addTodo = text => {
 
 export const removeTodo = id => {
   return {
-    type: 'REMOVE_TODO',
+    type: REMOVE_TODO,
     id
   }
 };
 
 export const toggleTodo = id => {
   return {
-    type: 'TOGGLE_TODO',
+    type: TOGGLE_TODO,
     id
   }
 };
 
-export const showAll = () => {
+export const setFilter = filter => {
   return {
-    type: 'SHOW_ALL'
+    type: SET_FILTER,
+    filter
   }
 };
 
-export const showCompleted = () => {
-  return {
-    type: 'SHOW_COMPLETED'
-  }
-};
-
-export const showUncompleted = () => {
-  return {
-    type: 'SHOW_UNCOMPLETED'
-  }
-};

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
-import { showAll, showUncompleted, showCompleted } from '../AC';
+import { setFilter } from '../AC';
+import { Filters } from './constants';
 
 const FiltersContainer = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ const ShowAllButton = GenericButton.extend`
   background-color: yellow;
 `;
 
-const ShowUncompletedButton = GenericButton.extend`
+const ShowActiveButton = GenericButton.extend`
   background-color: cyan;
 `; 
 
@@ -37,26 +38,26 @@ const ShowCompletedButton = GenericButton.extend`
   background-color: violet;
 `; 
 
-const FiltersPanel = ({ showAll, showUncompleted, showCompleted }) => {
+const FiltersPanel = ({ setFilter }) => {
   return (
     <FiltersContainer>
       <ShowAllButton 
-        onClick={showAll}
+        onClick={() => setFilter(Filters.SHOW_ALL)}
       >
         Show All
       </ShowAllButton>
-      <ShowUncompletedButton
-        onClick={showUncompleted}
+      <ShowActiveButton
+        onClick={() => setFilter(Filters.SHOW_ACTIVE)}
       >
-        Show Uncompleted
-      </ShowUncompletedButton>
+        Show Active
+      </ShowActiveButton>
       <ShowCompletedButton
-        onClick={showCompleted}
+        onClick={() => setFilter(Filters.SHOW_COMPLETED)}
       >
-        Show Uncompleted
+        Show Completed
       </ShowCompletedButton>
     </FiltersContainer>
   )
 };
 
-export default connect(null, { showAll, showCompleted, showUncompleted }) (FiltersPanel);
+export default connect(null, { setFilter }) (FiltersPanel);

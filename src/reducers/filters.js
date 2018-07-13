@@ -1,11 +1,9 @@
-export default (state = [], action) => {
+import { SET_FILTER, Filters } from '../components/constants';
+
+export default (state = Filters.SHOW_ALL, action) => {
   switch (action.type) {
-    case 'SHOW_UNCOMPLETED' :
-      return state.filter(item => !!item.completed);
-    case 'SHOW_COMPLETED' :
-      return state.filter(item => item.completed);
-    case 'SHOW_ALL' :
-      return state;
+    case SET_FILTER :
+      return action.filter;
     default: 
       return state;
   }

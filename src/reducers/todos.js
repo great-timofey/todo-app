@@ -1,6 +1,8 @@
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from '../components/constants';
+
 export default (state = [], action) => {
   switch (action.type) {
-    case 'ADD_TODO':
+    case ADD_TODO:
       return [
         ...state,
         {
@@ -9,9 +11,9 @@ export default (state = [], action) => {
           completed: false
         }
       ];
-    case 'REMOVE_TODO':
+    case REMOVE_TODO:
       return state.filter(item => item.id !== action.id)
-    case 'TOGGLE_TODO':
+    case TOGGLE_TODO:
       return state.map(item => {
         if (item.id === action.id) {
           item.completed = !(item.completed);

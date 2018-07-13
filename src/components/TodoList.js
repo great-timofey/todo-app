@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import Todo from './Todo';
 import { connect } from 'react-redux';
+import { Filters } from './constants';
 
 const List = styled.ul`
   list-style: none
@@ -28,6 +29,17 @@ const TodoList = ({ todos }) => {
   )
 }
 
+const getVisibleTodos = (todos, filter) => {
+  switch (filter) {
+    case Filters.SHOW_ALL:
+      return todos;
+    case Filters.SHOW_ACTIVE: 
+      return todos.filter(item => item.completed !== true);
+    case Filters.SHOW_COMPLETED:
+      return todos.filter(item => item.completed === true);
+  }
+}
+
 export default connect((state) => ({
-  todos: state.todos
+  todos: getVisibleTodos(state.todos, state.filters)
 })) (TodoList);

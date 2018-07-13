@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled, { injectGlobal } from 'styled-components';
-import AddTodo from './components/AddTodo';
-import TodoList from './components/TodoList';
-import FiltersPanel from './components/FiltersPanel';
+import AddTodo from './AddTodo';
+import TodoList from './TodoList';
+import FiltersPanel from './FiltersPanel';
 
 injectGlobal`
   body {
