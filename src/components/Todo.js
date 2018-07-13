@@ -12,10 +12,11 @@ const TodoContainer = styled.li.attrs({
   text-align: center;
   margin-bottom: 5px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
 `;
 
 const RemoveButton = styled.button`
@@ -32,6 +33,17 @@ const RemoveButton = styled.button`
   }
 `;
 
+const TodoName = styled.h2`
+  font-size: 22px;
+  margin-right: 15px;
+`
+const TodoDesc = styled.p`
+  max-width: 50%;
+  font-size: 18px;
+  text-align: justify;
+  margin-right: 15px;
+`
+
 const TodoStatusBox = styled.input.attrs({
   type: 'checkbox'
 })`
@@ -40,12 +52,17 @@ const TodoStatusBox = styled.input.attrs({
 
 class Todo extends Component {
   render() {
-    const { text, isChecked } = this.props;
+    const { name, desc, isChecked } = this.props;
     return (
       <TodoContainer 
         active={isChecked}
       >
-        {text}
+        <TodoName>
+          {name}
+        </TodoName>
+        <TodoDesc>
+          {desc}
+        </TodoDesc>
         <RemoveButton 
           onClick={this.handleDelete} 
         >

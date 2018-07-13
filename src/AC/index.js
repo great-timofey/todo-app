@@ -1,10 +1,11 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, SET_FILTER } from '../components/constants';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, SET_FILTER, SET_PRIORITY } from '../components/constants';
 let nextId = 0;
-export const addTodo = text => { 
+export const addTodo = (name, desc) => { 
   return { 
     type: ADD_TODO,
     id: nextId++,
-    text
+    name,
+    desc
   } 
 };
 
@@ -28,4 +29,11 @@ export const setFilter = filter => {
     filter
   }
 };
+
+export const setPriority = priority => {
+  return {
+    type: SET_PRIORITY,
+    priority
+  }
+}
 

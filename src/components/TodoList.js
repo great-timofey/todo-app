@@ -20,7 +20,8 @@ const TodoList = ({ todos }) => {
           <Todo 
             key={todo.id}
             id={todo.id}
-            text={todo.text}
+            name={todo.name}
+            desc={todo.desc}
             isChecked={todo.completed}
           />
         ) 

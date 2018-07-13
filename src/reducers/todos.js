@@ -1,21 +1,24 @@
 import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from '../components/constants';
 
 export default (state = [], action) => {
+  const { id, name, desc, priority } = action;
   switch (action.type) {
     case ADD_TODO:
       return [
         ...state,
         {
-          id: action.id,
-          text: action.text,
+          id,
+          name,
+          desc,
+          priority,
           completed: false
         }
       ];
     case REMOVE_TODO:
-      return state.filter(item => item.id !== action.id)
+      return state.filter(item => item.id !== id)
     case TOGGLE_TODO:
       return state.map(item => {
-        if (item.id === action.id) {
+        if (item.id === id) {
           item.completed = !(item.completed);
         }
         return item;

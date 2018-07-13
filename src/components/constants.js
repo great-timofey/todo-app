@@ -9,3 +9,11 @@ export const Filters = {
   SHOW_COMPLETED: 'SHOW_COMPLETED',
   SHOW_ACTIVE: 'SHOW_ACTIVE'
 };
+
+export const SET_PRIORITY = 'SET_PRIORITY';
+
+export const Priorities = {
+  NORMAL: 'NORMAL',
+  HIGH: 'HIGH',
+  HIGHEST: 'HIGHEST'
+};

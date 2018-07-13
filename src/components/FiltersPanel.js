@@ -6,56 +6,45 @@ import { Filters } from './constants';
 
 const FiltersContainer = styled.div`
   display: flex;
-  margin: 0 auto;
-  justify-content: space-between;
+  margin: 0 auto 10px;
+  justify-content: center;
   width: 50%;
 `;
 
-const GenericButton = styled.button`
+const Button = styled.button`
+  width: 20%;
+  margin-right: 5px
   font-size: 12px;
   border-radius: 5px;
   padding: 3px;
   transition: 0.2s;
-  color: black;
+  background-color: #C9F9FF;
   &:hover {
     cursor: pointer;
-    border: 1px solid black;
-    color: white;
-    background-color: black;
+    background-color: #90D7FF;
     transition: 0.2s;
   }
 `;
 
-const ShowAllButton = GenericButton.extend`
-  background-color: yellow;
-`;
-
-const ShowActiveButton = GenericButton.extend`
-  background-color: cyan;
-`; 
-
-const ShowCompletedButton = GenericButton.extend`
-  background-color: violet;
-`; 
 
 const FiltersPanel = ({ setFilter }) => {
   return (
     <FiltersContainer>
-      <ShowAllButton 
+      <Button 
         onClick={() => setFilter(Filters.SHOW_ALL)}
       >
         Show All
-      </ShowAllButton>
-      <ShowActiveButton
+      </Button>
+      <Button
         onClick={() => setFilter(Filters.SHOW_ACTIVE)}
       >
         Show Active
-      </ShowActiveButton>
-      <ShowCompletedButton
+      </Button>
+      <Button
         onClick={() => setFilter(Filters.SHOW_COMPLETED)}
       >
         Show Completed
-      </ShowCompletedButton>
+      </Button>
     </FiltersContainer>
   )
 };

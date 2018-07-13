@@ -8,6 +8,7 @@ injectGlobal`
   body {
     font-family: system-ui;
     margin: 0;
+    background: linear-gradient(to right, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
   }
 `;
 
@@ -26,8 +27,8 @@ export default class App extends Component {
       <AppContainer>
         <AppHeader>My Todo App</AppHeader>
         <AddTodo />
-        <TodoList />
         <FiltersPanel />
+        <TodoList />
       </AppContainer>
     );
   }
