@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { removeTodo, toggleTodo } from '../AC';
 
@@ -57,7 +57,7 @@ const TodoStatusBox = styled.input.attrs({
 
 class Todo extends Component {
   render() {
-    const { name, desc, priority, isChecked, date, overtime } = this.props;
+    const { name, desc, priority, completed, date } = this.props;
     let prioritySign;
     switch ( priority ) {
       case 'High':
@@ -72,11 +72,11 @@ class Todo extends Component {
 
     return (
       <TodoContainer 
-        active={isChecked}
+        active={completed}
         date={date}
       >
         <TodoStatusBox 
-          checked={isChecked}
+          checked={completed}
           onChange={this.handleCheck} 
         />
         <TodoName>

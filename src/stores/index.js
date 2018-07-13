@@ -1,5 +1,6 @@
 import { createStore } from 'redux';
-import reducer from '../reducers'
+import reducer from '../reducers';
+import throttle from 'lodash/throttle';
 
 const loadState = () => {
   try {
@@ -22,17 +23,17 @@ const saveState = (state) => {
   }
 }
 
-const persistedState = {...loadState()};
+const persistedState = loadState();
 const store = createStore(
   reducer, 
   persistedState
 );
 
-store.subscribe(() => {
+store.subscribe(throttle(() => {
   saveState({
     todos: store.getState().todos
   });
-})
+}, 1000))
 
 //only for dev 
 window.store = store;

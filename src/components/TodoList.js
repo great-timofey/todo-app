@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Todo from './Todo';
 import { connect } from 'react-redux';
 import { Filters } from '../constants';
@@ -19,12 +19,7 @@ const TodoList = ({ todos }) => {
         todos.map( todo => 
           <Todo 
             key={todo.id}
-            id={todo.id}
-            name={todo.name}
-            desc={todo.desc}
-            priority={todo.priority}
-            isChecked={todo.completed}
-            date={todo.date}
+            {...todo}
           />
         ) 
       }

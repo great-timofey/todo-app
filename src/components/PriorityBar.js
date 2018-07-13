@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const PriorityContainer = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ const PriorityContainer = styled.div`
 `;
 
 const PriorityLegend = styled.h2`
-  font-size: 14px;
+  font-size: 18px;
   font-style: italic;
   margin-right: 10px;
 `;
@@ -25,7 +25,7 @@ const PriorityRadio = styled.input.attrs({
 const PriorityLabel = styled.label`
   margin-bottom: 5px;
   margin-right: 5px;
-  font-size: 12px;
+  font-size: 16px;
 `;
 
 export default ({ handleChange }) => {

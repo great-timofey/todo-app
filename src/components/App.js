@@ -6,19 +6,20 @@ import FiltersBar from './FiltersBar';
 
 injectGlobal`
   body {
-    font-family: system-ui;
+    font-family: 'Titillium Web', sans-serif;
     margin: 0 auto;
     background: linear-gradient(to right, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
   }
 `;
 
 const AppContainer = styled.section`
-  
 `;
 
 const AppHeader = styled.h1`
-  font-size: 25px
-  text-align: center
+  color: black;
+  font-size: 35px;
+  text-align: center;
+  margin-bottom: 20px;
 `;
 
 export default class App extends Component {

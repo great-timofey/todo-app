@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { addTodo } from '../AC';
 import { connect } from 'react-redux';
 import PriorityBar from './PriorityBar';
@@ -25,7 +25,7 @@ const DateContainer = styled.div`
 
 const DateLabel = styled.span`
   margin-right: 10px;
-  font-size: 14px;
+  font-size: 18px;
   font-style: italic;
 `
 
@@ -48,11 +48,14 @@ const AddButton = styled.button`
   padding: 5px;
   transition: 0.2s;
   max-height: 50px;
+  color: #AAFF00;
+  border: 1px solid #AAFF00;
+  background-color: black;
   &:hover {
     cursor: pointer;
     border: 1px solid black;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: #AAFF00;
     transition: 0.2s;
   }
 `;
@@ -63,7 +66,6 @@ class AddTodoBar extends Component {
 
     this.state = {
       currentPriority: 'Normal',
-      currentDate: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
