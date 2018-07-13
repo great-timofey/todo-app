@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
 import { setFilter } from '../AC';
-import { Filters } from './constants';
+import { Filters } from '../constants';
 
 const FiltersContainer = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ const Button = styled.button`
 `;
 
 
-const FiltersPanel = ({ setFilter }) => {
+const FiltersBar = ({ setFilter }) => {
   return (
     <FiltersContainer>
       <Button 
@@ -59,4 +59,4 @@ const FiltersPanel = ({ setFilter }) => {
   )
 };
 
-export default connect(null, { setFilter }) (FiltersPanel);
+export default connect(null, { setFilter }) (FiltersBar);

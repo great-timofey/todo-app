@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from '../components/constants';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from '../constants';
 
 export default (state = [], action) => {
   const { id, name, desc, priority } = action;

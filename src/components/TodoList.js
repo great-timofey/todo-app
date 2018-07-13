@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import Todo from './Todo';
 import { connect } from 'react-redux';
-import { Filters } from './constants';
+import { Filters } from '../constants';
 
 const List = styled.ul`
   list-style: none

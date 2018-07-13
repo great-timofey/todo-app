@@ -1,4 +1,4 @@
-import { SET_FILTER, Filters } from '../components/constants';
+import { SET_FILTER, Filters } from '../constants';
 
 export default (state = Filters.SHOW_ALL, action) => {
   switch (action.type) {

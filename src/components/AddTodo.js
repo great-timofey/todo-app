@@ -7,8 +7,10 @@ import PriorityBar from './PriorityBar';
 const AddTodoContainer = styled.div`
   padding: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  position: relative;
+  width: 50%;
+  margin: 0 auto;
 `;
 
 const DataInput = styled.input`
@@ -17,14 +19,14 @@ const DataInput = styled.input`
   text-align: center;
 `;
 
-const ParamsContainer = styled.div`
+const DataInputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 10px;
-  max-width: 50%;
 `;
 
 const AddButton = styled.button`
+  width: 50%;
+  margin: 0 auto;
   font-size: 18px;
   border-radius: 5px;
   padding: 5px;
@@ -48,36 +50,30 @@ class AddTodo extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
+    this.nameInput = null; 
+    this.descInput = null;
   }
 
   render() {
-    let nameInput, descInput;
 
     return (
       <AddTodoContainer>
-        <ParamsContainer>
+        <DataInputContainer>
           <DataInput 
             placeholder='name...' 
-            innerRef={node => nameInput = node}
+            innerRef={node => this.nameInput = node}
           />
           <DataInput 
             placeholder='description...' 
-            innerRef={node => descInput = node}
+            innerRef={node => this.descInput = node}
           />
-          <PriorityBar 
-            handleChange={this.handleChange}
-          />
-        </ParamsContainer>
+        </DataInputContainer>
+        <PriorityBar 
+          handleChange={this.handleChange}
+        />
         <AddButton 
-          onClick={() => {
-              if (!nameInput.value.trim() || !descInput.value.trim()) { return; }
-              const { addTodo } = this.props;
-              const { currentPriority } = this.state;
-              addTodo(nameInput.value, descInput.value, currentPriority);
-              nameInput.value = '';
-              descInput.value = '';
-            }
-          } 
+          onClick={this.handleAdd} 
         >
           Add Todo
         </AddButton>
@@ -89,6 +85,16 @@ class AddTodo extends Component {
     this.setState({
       currentPriority: event.target.value
     })
+  };
+
+  handleAdd = () => {
+    const { addTodo } = this.props;
+    const { currentPriority } = this.state;
+    const { nameInput, descInput } = this;
+    if (!nameInput.value.trim() || !descInput.value.trim()) { return; }
+    addTodo(this.nameInput.value, this.descInput.value, currentPriority);
+    nameInput.value = '';
+    descInput.value = '';
   }
 };
 

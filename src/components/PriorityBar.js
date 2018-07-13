@@ -24,6 +24,7 @@ const PriorityRadio = styled.input.attrs({
 
 const PriorityLabel = styled.label`
   margin-bottom: 5px;
+  margin-right: 5px;
   font-size: 12px;
 `;
 
