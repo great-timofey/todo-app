@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled, { injectGlobal } from 'styled-components';
 import AddTodoBar from './AddTodoBar';
-import TodoListBar from './TodoListBar';
+import TodoList from './TodoList';
 import FiltersBar from './FiltersBar';
 
 injectGlobal`
@@ -28,7 +28,7 @@ export default class App extends Component {
         <AppHeader>My Todo App</AppHeader>
         <AddTodoBar />
         <FiltersBar />
-        <TodoListBar />
+        <TodoList />
       </AppContainer>
     );
   }

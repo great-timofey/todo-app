@@ -14,7 +14,7 @@ const TodoContainer = styled.li.attrs({
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   border-top: 1px solid white;
   border-bottom: 1px solid white;
 `;
@@ -43,6 +43,10 @@ const TodoDesc = styled.p`
   text-align: justify;
   margin-right: 15px;
 `
+const TodoDate = styled.span`
+  font-size: 10px;
+  color: white;
+`
 
 const TodoStatusBox = styled.input.attrs({
   type: 'checkbox'
@@ -52,7 +56,7 @@ const TodoStatusBox = styled.input.attrs({
 
 class Todo extends Component {
   render() {
-    const { name, desc, priority, isChecked } = this.props;
+    const { name, desc, priority, isChecked, date, overtime } = this.props;
     let prioritySign;
     switch ( priority ) {
       case 'High':
@@ -76,9 +80,8 @@ class Todo extends Component {
         <TodoName>
           {`${prioritySign} ${name}`}
         </TodoName>
-        <TodoDesc>
-          {desc}
-        </TodoDesc>
+        <TodoDesc> {desc} </TodoDesc>
+        <TodoDate> {date} </TodoDate>
         <RemoveButton 
           onClick={this.handleDelete} 
         >
@@ -89,11 +92,13 @@ class Todo extends Component {
   };
 
   handleDelete = () => {
+    console.log(this)
     const { removeTodo, id } = this.props;
     removeTodo(id);
   }
 
   handleCheck = () => {
+    console.log(this)
     const { toggleTodo, id } = this.props;
     toggleTodo(id);
   }

@@ -19,6 +19,22 @@ const DataInput = styled.input`
   text-align: center;
 `;
 
+const DateContainer = styled.div`
+  margin: 0 auto;
+`;
+
+const DateLabel = styled.span`
+  margin-right: 10px;
+  font-size: 14px;
+  font-style: italic;
+`
+
+const DateInput = styled.input.attrs({
+  type: 'date',
+})`
+  align-self: flex-end;
+`;
+
 const DataInputContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -46,13 +62,15 @@ class AddTodoBar extends Component {
     super();
 
     this.state = {
-      currentPriority: 'Normal'
+      currentPriority: 'Normal',
+      currentDate: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.nameInput = null; 
     this.descInput = null;
+    this.dateInput = null;
   }
 
   render() {
@@ -68,6 +86,12 @@ class AddTodoBar extends Component {
             placeholder='description...' 
             innerRef={node => this.descInput = node}
           />
+          <DateContainer>
+            <DateLabel>Date To Finish</DateLabel>
+            <DateInput 
+              innerRef={node => this.dateInput = node}
+            />
+          </DateContainer>
         </DataInputContainer>
         <PriorityBar 
           handleChange={this.handleChange}
@@ -90,11 +114,12 @@ class AddTodoBar extends Component {
   handleAdd = () => {
     const { addTodo } = this.props;
     const { currentPriority } = this.state;
-    const { nameInput, descInput } = this;
+    const { nameInput, descInput, dateInput } = this;
     if (!nameInput.value.trim() || !descInput.value.trim()) { return; }
-    addTodo(this.nameInput.value, this.descInput.value, currentPriority);
+    addTodo(nameInput.value, descInput.value, currentPriority, dateInput.value);
     nameInput.value = '';
     descInput.value = '';
+    dateInput.value = '';
   }
 };
 

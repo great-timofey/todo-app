@@ -1,7 +1,7 @@
 import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from '../constants';
 
 export default (state = [], action) => {
-  const { id, name, desc, priority } = action;
+  const { id, name, desc, priority, date } = action;
   switch (action.type) {
     case ADD_TODO:
       return [
@@ -11,6 +11,7 @@ export default (state = [], action) => {
           name,
           desc,
           priority,
+          date,
           completed: false
         }
       ];

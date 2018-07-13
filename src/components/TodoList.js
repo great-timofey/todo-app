@@ -7,12 +7,12 @@ import { Filters } from '../constants';
 const List = styled.ul`
   list-style: none
   padding: 0
-  width: 50%
+  width: 75%
   margin: 0 auto 20px
   font-size: 20px
 `;
 
-const TodoListBar = ({ todos }) => {
+const TodoList = ({ todos }) => {
   return (
     <List>
       { 
@@ -24,6 +24,7 @@ const TodoListBar = ({ todos }) => {
             desc={todo.desc}
             priority={todo.priority}
             isChecked={todo.completed}
+            date={todo.date}
           />
         ) 
       }
@@ -48,4 +49,4 @@ const getVisibleTodos = (todos, filter) => {
 
 export default connect((state) => ({
   todos: getVisibleTodos(state.todos, state.filter)
-})) (TodoListBar);
+})) (TodoList);
