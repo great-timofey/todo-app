@@ -41,7 +41,7 @@ const AddButton = styled.button`
   }
 `;
 
-class AddTodo extends Component {
+class AddTodoBar extends Component {
   constructor() {
     super();
 
@@ -98,4 +98,4 @@ class AddTodo extends Component {
   }
 };
 
-export default connect(null, { addTodo })(AddTodo);
+export default connect(null, { addTodo })(AddTodoBar);

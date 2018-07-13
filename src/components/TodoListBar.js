@@ -12,7 +12,7 @@ const List = styled.ul`
   font-size: 20px
 `;
 
-const TodoList = ({ todos }) => {
+const TodoListBar = ({ todos }) => {
   return (
     <List>
       { 
@@ -48,4 +48,4 @@ const getVisibleTodos = (todos, filter) => {
 
 export default connect((state) => ({
   todos: getVisibleTodos(state.todos, state.filter)
-})) (TodoList);
+})) (TodoListBar);

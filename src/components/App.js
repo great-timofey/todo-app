@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import styled, { injectGlobal } from 'styled-components';
-import AddTodo from './AddTodo';
-import TodoList from './TodoList';
+import AddTodoBar from './AddTodoBar';
+import TodoListBar from './TodoListBar';
 import FiltersBar from './FiltersBar';
 
 injectGlobal`
   body {
     font-family: system-ui;
-    margin: 0;
+    margin: 0 auto;
     background: linear-gradient(to right, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
   }
 `;
 
 const AppContainer = styled.section`
-  height: 100vh
+  
 `;
 
 const AppHeader = styled.h1`
@@ -26,9 +26,9 @@ export default class App extends Component {
     return (
       <AppContainer>
         <AppHeader>My Todo App</AppHeader>
-        <AddTodo />
+        <AddTodoBar />
         <FiltersBar />
-        <TodoList />
+        <TodoListBar />
       </AppContainer>
     );
   }
