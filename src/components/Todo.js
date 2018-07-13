@@ -6,6 +6,7 @@ import { removeTodo, toggleTodo } from '../AC';
 const TodoContainer = styled.li.attrs({
   style: props => ({
     textDecorationLine: props.active ? 'line-through' : 'none',
+    color: (new Date(props.date) < new Date() ? 'red' : 'black')
   })
 })`
   padding: 5px;
@@ -45,7 +46,7 @@ const TodoDesc = styled.p`
 `
 const TodoDate = styled.span`
   font-size: 10px;
-  color: white;
+  color: ${TodoContainer.color};
 `
 
 const TodoStatusBox = styled.input.attrs({
@@ -72,6 +73,7 @@ class Todo extends Component {
     return (
       <TodoContainer 
         active={isChecked}
+        date={date}
       >
         <TodoStatusBox 
           checked={isChecked}
@@ -92,13 +94,11 @@ class Todo extends Component {
   };
 
   handleDelete = () => {
-    console.log(this)
     const { removeTodo, id } = this.props;
     removeTodo(id);
   }
 
   handleCheck = () => {
-    console.log(this)
     const { toggleTodo, id } = this.props;
     toggleTodo(id);
   }

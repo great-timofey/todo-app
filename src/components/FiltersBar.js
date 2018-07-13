@@ -8,55 +8,69 @@ const FiltersContainer = styled.div`
   display: flex;
   margin: 0 auto 10px;
   justify-content: center;
-  width: 50%;
+  width: 70%;
 `;
 
-const Button = styled.button`
+const Button = styled.button.attrs({
+  style: props => ({
+    boxShadow: props.active ? 'none': '1px 1px 1px black',
+    color: props.active ? 'white' : 'black',
+    fontWeight: props.active ? 'bold' : 'normal' 
+  })
+})`
   width: 20%;
   margin-right: 5px
-  font-size: 12px;
+  font-size: 14px;
   border-radius: 5px;
-  padding: 3px;
+  padding: 5px;
   transition: 0.2s;
-  background-color: #C9F9FF;
+  background-color: #3DCD3D;
   &:hover {
     cursor: pointer;
-    background-color: #90D7FF;
+    background-color: #B3F6B3;
     transition: 0.2s;
+  }
+  &:last-of-type {
+    margin-right: 0;
   }
 `;
 
 
-const FiltersBar = ({ setFilter }) => {
+const FiltersBar = ({ filter, setFilter }) => {
   return (
     <FiltersContainer>
       <Button 
+        active={filter === Filters.SHOW_ALL}
         onClick={() => setFilter(Filters.SHOW_ALL)}
       >
-        Show All
+        All
       </Button>
       <Button
+        active={filter === Filters.SHOW_ACTIVE}
         onClick={() => setFilter(Filters.SHOW_ACTIVE)}
       >
-        Show Active
+        Active
       </Button>
       <Button
+        active={filter === Filters.SHOW_COMPLETED}
         onClick={() => setFilter(Filters.SHOW_COMPLETED)}
       >
-        Show Completed
+        Completed
       </Button>
       <Button
+        active={filter === Filters.SHOW_HIGH}
         onClick={() => setFilter(Filters.SHOW_HIGH)}
       >
-        Show High
+        High
       </Button>
       <Button
+        active={filter === Filters.SHOW_HIGHEST}
         onClick={() => setFilter(Filters.SHOW_HIGHEST)}
       >
-        Show Highest
+        Highest
       </Button>
     </FiltersContainer>
   )
 };
 
-export default connect(null, { setFilter }) (FiltersBar);
+export default connect(({ filter }) => ({ filter }), { setFilter }) (FiltersBar);
