@@ -89,7 +89,7 @@ class AddTodoBar extends Component {
             innerRef={node => this.descInput = node}
           />
           <DateContainer>
-            <DateLabel>Date To Finish</DateLabel>
+            <DateLabel>Deadline</DateLabel>
             <DateInput 
               innerRef={node => this.dateInput = node}
             />

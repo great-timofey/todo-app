@@ -67,6 +67,17 @@ const TodoStatusBox = styled.input.attrs({
 })`
 `;
 
+const Overlay = styled.div`
+  display: ${props => props.active ? 'block' : 'none'};
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  filter: blur(20px);
+  z-index: 3;
+`;
 
 class Todo extends Component {
   constructor() {
@@ -100,11 +111,9 @@ class Todo extends Component {
           checked={completed}
           onChange={this.handleCheck} 
         />
-        <TodoName>
-          {`${prioritySign} ${name}`}
-        </TodoName>
-        <TodoDesc> {desc} </TodoDesc>
-        <TodoDate> {date} </TodoDate>
+        <TodoName>{`${prioritySign} ${name}`}</TodoName>
+        <TodoDesc>{desc}</TodoDesc>
+        <TodoDate>{`deadline: ${date ? date : 'none'}`}</TodoDate>
         <ButtonContainer>
           <ModifyButton
             onClick={() => this.setState({
@@ -126,7 +135,12 @@ class Todo extends Component {
           desc={desc}
           date={date}
           priority={priority}
-          callback={this.handleCompleteModify}
+          callback={() => this.setState({
+            isModified: false
+          })}
+        />
+        <Overlay 
+          active={this.state.isModified}
         />
       </TodoContainer>
     )
@@ -140,12 +154,6 @@ class Todo extends Component {
   handleCheck = () => {
     const { toggleTodo, id } = this.props;
     toggleTodo(id);
-  }
-
-  handleCompleteModify = () => {
-    this.setState({
-      isModified: false
-    })
   }
 };
 

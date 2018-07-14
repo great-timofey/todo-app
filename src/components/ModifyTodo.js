@@ -47,18 +47,17 @@ class ModifyTodo extends Component {
     this.nameInput = null;
     this.descInput = null;
     this.dateInput = null;
-    this.prior = null;
   }
 
   handleModify = () => {
     const { nameInput, descInput, dateInput } = this;
-    const { id, modifyTodo, callback } = this.props;
-    modifyTodo(id, nameInput.value, descInput.value, 'Normal', dateInput.value);
+    const { id, modifyTodo, priority, callback } = this.props;
+    modifyTodo(id, nameInput.value, descInput.value, priority, dateInput.value);
     callback();
   }
 
   render() {
-    const { show, name, desc, date, priority, callback } = this.props;
+    const { show, name, desc, date, priority } = this.props;
     return (
       <ModifyZone active={show} >
         <ModifyHeader>Modify Todo</ModifyHeader>
