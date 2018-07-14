@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { removeTodo, toggleTodo } from '../AC';
+import ModifyTodo from './ModifyTodo';
 
 const TodoContainer = styled.li.attrs({
   style: props => ({
@@ -18,9 +19,17 @@ const TodoContainer = styled.li.attrs({
   align-items: baseline;
   border-top: 1px solid white;
   border-bottom: 1px solid white;
+  position: relative;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-self: center;
 `;
 
 const RemoveButton = styled.button`
+  width: 100%;
   font-size: 12px;
   border-radius: 5px;
   transition: 0.1s;
@@ -34,30 +43,42 @@ const RemoveButton = styled.button`
   }
 `;
 
+const ModifyButton = RemoveButton.extend`
+  &:hover {
+    background-color: green;
+  }
+`;
+
 const TodoName = styled.h2`
   font-size: 22px;
-  margin-right: 15px;
-`
+`;
 const TodoDesc = styled.p`
   max-width: 50%;
   font-size: 18px;
   text-align: justify;
-  margin-right: 15px;
-`
+`;
 const TodoDate = styled.span`
   font-size: 10px;
   color: ${TodoContainer.color};
-`
+`;
 
 const TodoStatusBox = styled.input.attrs({
   type: 'checkbox'
 })`
-  margin-right: 15px;
 `;
 
+
 class Todo extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      isModified: false
+    };
+  }
+
   render() {
-    const { name, desc, priority, completed, date } = this.props;
+    const { id, name, desc, priority, completed, date } = this.props;
     let prioritySign;
     switch ( priority ) {
       case 'High':
@@ -84,11 +105,29 @@ class Todo extends Component {
         </TodoName>
         <TodoDesc> {desc} </TodoDesc>
         <TodoDate> {date} </TodoDate>
-        <RemoveButton 
-          onClick={this.handleDelete} 
-        >
-          Remove
-        </RemoveButton>
+        <ButtonContainer>
+          <ModifyButton
+            onClick={() => this.setState({
+              isModified: true
+            })} 
+          >
+            Modify
+          </ModifyButton>
+          <RemoveButton 
+            onClick={this.handleDelete} 
+          >
+            Remove
+          </RemoveButton>
+        </ButtonContainer>
+        <ModifyTodo 
+          show={this.state.isModified}
+          id={id}
+          name={name}
+          desc={desc}
+          date={date}
+          priority={priority}
+          callback={this.handleCompleteModify}
+        />
       </TodoContainer>
     )
   };
@@ -96,11 +135,17 @@ class Todo extends Component {
   handleDelete = () => {
     const { removeTodo, id } = this.props;
     removeTodo(id);
-  }
+  };
 
   handleCheck = () => {
     const { toggleTodo, id } = this.props;
     toggleTodo(id);
+  }
+
+  handleCompleteModify = () => {
+    this.setState({
+      isModified: false
+    })
   }
 };
 

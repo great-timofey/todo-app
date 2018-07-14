@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from '../constants';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, MODIFY_TODO } from '../constants';
 
 export default (state = [], action) => {
   const { id, name, desc, priority, date } = action;
@@ -24,6 +24,16 @@ export default (state = [], action) => {
         }
         return item;
       });
+    case MODIFY_TODO:
+      return state.map(item => {
+        if (item.id === id) {
+          item.name = name;
+          item.desc = desc;
+          item.priority = priority;
+          item.date = date;
+        }
+        return item;
+      })
     default:
       return state;
   }

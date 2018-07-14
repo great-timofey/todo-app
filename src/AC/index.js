@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, SET_FILTER  } from '../constants';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, MODIFY_TODO, SET_FILTER  } from '../constants';
 import { v4 } from 'node-uuid';
 
 export const addTodo = (name, desc, priority, date) => ({ 
@@ -9,6 +9,15 @@ export const addTodo = (name, desc, priority, date) => ({
   priority,
   date
 }); 
+
+export const modifyTodo = (id, name, desc, priority, date) => ({
+  type: MODIFY_TODO,
+  id,
+  name,
+  desc,
+  priority,
+  date
+});
 
 export const removeTodo = id => ({
   type: REMOVE_TODO,

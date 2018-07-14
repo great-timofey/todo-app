@@ -1,6 +1,7 @@
 export const ADD_TODO = 'ADD_TODO';
 export const REMOVE_TODO = 'REMOVE_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
+export const MODIFY_TODO = 'MODIFY_TODO';
 
 export const SET_FILTER = 'SET_FILTER';
 
