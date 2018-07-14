@@ -58,6 +58,12 @@ const FiltersBar = ({ filter, setFilter }) => {
         Completed
       </Button>
       <Button
+        active={filter === Filters.SHOW_NORMAL}
+        onClick={() => setFilter(Filters.SHOW_NORMAL)}
+      >
+        Normal
+      </Button>
+      <Button
         active={filter === Filters.SHOW_HIGH}
         onClick={() => setFilter(Filters.SHOW_HIGH)}
       >

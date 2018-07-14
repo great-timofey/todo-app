@@ -6,8 +6,10 @@ import ModifyTodo from './ModifyTodo';
 
 const TodoContainer = styled.li.attrs({
   style: props => ({
-    textDecorationLine: props.active ? 'line-through' : 'none',
-    color: (new Date(props.date) < new Date() ? 'red' : 'black')
+    backgroundColor: props.active ? 'rgba(0, 0, 0, 0.1)' : 'transparent',
+    color: (new Date(props.date) < new Date() ? 'red' : 'black'),
+    borderTop: props.active ? '1px solid blue' : '1px solid white',
+    borderBottom: props.active ? '1px solid blue' : '1px solid white'
   })
 })`
   padding: 5px;
@@ -17,8 +19,6 @@ const TodoContainer = styled.li.attrs({
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
   position: relative;
 `;
 
@@ -65,6 +65,8 @@ const TodoDate = styled.span`
 const TodoStatusBox = styled.input.attrs({
   type: 'checkbox'
 })`
+  transform: scale(2.0);
+  margin-left: 10px;
 `;
 
 const Overlay = styled.div`
@@ -89,7 +91,7 @@ class Todo extends Component {
   }
 
   render() {
-    const { id, name, desc, priority, completed, date } = this.props;
+    const { id, name, desc, priority, completed, deadline, completionDate } = this.props;
     let prioritySign;
     switch ( priority ) {
       case 'High':
@@ -105,7 +107,7 @@ class Todo extends Component {
     return (
       <TodoContainer 
         active={completed}
-        date={date}
+        date={deadline}
       >
         <TodoStatusBox 
           checked={completed}
@@ -113,7 +115,8 @@ class Todo extends Component {
         />
         <TodoName>{`${prioritySign} ${name}`}</TodoName>
         <TodoDesc>{desc}</TodoDesc>
-        <TodoDate>{`deadline: ${date ? date : 'none'}`}</TodoDate>
+        <TodoDate>{`deadline: ${deadline ? deadline : 'none'}`}</TodoDate>
+        <TodoDate>{`completed: ${completionDate ? completionDate : 'no'}`}</TodoDate>
         <ButtonContainer>
           <ModifyButton
             onClick={() => this.setState({
@@ -133,7 +136,7 @@ class Todo extends Component {
           id={id}
           name={name}
           desc={desc}
-          date={date}
+          deadline={deadline}
           priority={priority}
           callback={() => this.setState({
             isModified: false
@@ -153,7 +156,7 @@ class Todo extends Component {
 
   handleCheck = () => {
     const { toggleTodo, id } = this.props;
-    toggleTodo(id);
+    toggleTodo(id, new Date().toISOString().slice(0,10));
   }
 };
 

@@ -1,7 +1,7 @@
 import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, MODIFY_TODO } from '../constants';
 
 export default (state = [], action) => {
-  const { id, name, desc, priority, date } = action;
+  const { id, name, desc, priority, deadline, completionDate } = action;
   switch (action.type) {
     case ADD_TODO:
       return [
@@ -11,7 +11,8 @@ export default (state = [], action) => {
           name,
           desc,
           priority,
-          date,
+          deadline,
+          completionDate,
           completed: false
         }
       ];
@@ -21,6 +22,11 @@ export default (state = [], action) => {
       return state.map(item => {
         if (item.id === id) {
           item.completed = !(item.completed);
+          if (!item.completed) {
+            item.completionDate = undefined;
+          } else {
+            item.completionDate = completionDate;
+          }
         }
         return item;
       });
@@ -30,7 +36,7 @@ export default (state = [], action) => {
           item.name = name;
           item.desc = desc;
           item.priority = priority;
-          item.date = date;
+          item.deadline = deadline;
         }
         return item;
       })

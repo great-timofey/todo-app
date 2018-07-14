@@ -35,6 +35,8 @@ const getVisibleTodos = (todos, filter) => {
       return todos.filter(item => item.completed !== true);
     case Filters.SHOW_COMPLETED:
       return todos.filter(item => item.completed === true);
+    case Filters.SHOW_NORMAL:
+      return todos.filter(item => item.priority === 'Normal');
     case Filters.SHOW_HIGH:
       return todos.filter(item => item.priority === 'High');
     case Filters.SHOW_HIGHEST:

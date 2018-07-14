@@ -8,36 +8,53 @@ const ModifyZone = styled.div`
   position: absolute;
   z-index: 5;
   width: 100%;
-  height: 100%;
-  background-color: black;
+  height: 120%;
+  background-color: rgba(145,232,66,1);
   color: white;
+  border-radius: 10px;
 `;
 
 const FinishButton = styled.button`
+  position: absolute;
   width: 25%;
   font-size: 12px;
   border-radius: 5px;
   transition: 0.1s;
-  margin-left: auto;
-  top: 50%;
-  right: 10%;
-  transform: translateY(-50%);
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  background-color: green;
+  color: white;
+  bottom: -40px;
   &:hover {
     cursor: pointer;
-    color: white;
-    background-color: green;
+    background-color: lime;
+    color: black;
     transition: 0.1s;
   }
 `;
 
 const ModifyHeader = styled.h2`
-  font-size: 13px;
+  color: black;
+  font-size: 18px;
   font-weight: bold;
   margin: 0 0 5px;
 `;
 
 const ModifyInput = styled.input`
-  display: block;
+  text-align: center;
+`;
+
+const InputLabel = styled.label`
+  font-size: 14px;
+  color: black;
+  font-style: italic;
+`
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-around;
+  position: relative;
 `;
 
 class ModifyTodo extends Component {
@@ -57,28 +74,39 @@ class ModifyTodo extends Component {
   }
 
   render() {
-    const { show, name, desc, date, priority } = this.props;
+    const { show, name, desc, creationDate, priority } = this.props;
     return (
       <ModifyZone active={show} >
         <ModifyHeader>Modify Todo</ModifyHeader>
-        <ModifyInput
-          type='text'
-          defaultValue={name}
-          innerRef={node => this.nameInput = node}
-        />
-        <ModifyInput 
-          type='text' 
-          defaultValue={desc}
-          innerRef={node => this.descInput = node}
-        />
-        <ModifyInput 
-          type='date'
-          defaultValue={date}
-          innerRef={node => this.dateInput = node}
-        />
-        <FinishButton onClick={this.handleModify} >
-          Complete Modification
-        </FinishButton>
+        <Container>
+          <InputLabel>
+            Name&nbsp;
+            <ModifyInput
+              type='text'
+              defaultValue={name}
+              innerRef={node => this.nameInput = node}
+            />
+          </InputLabel>
+          <InputLabel>
+            Description&nbsp;
+            <ModifyInput 
+              type='text' 
+              defaultValue={desc}
+              innerRef={node => this.descInput = node}
+            />
+          </InputLabel>
+          <InputLabel>
+            Date&nbsp;   
+            <ModifyInput 
+              type='date'
+              defaultValue={creationDate}
+              innerRef={node => this.dateInput = node}
+            />
+          </InputLabel>
+          <FinishButton onClick={this.handleModify} >
+            Complete Modification
+          </FinishButton>
+        </Container>
       </ModifyZone>
     )
   }
